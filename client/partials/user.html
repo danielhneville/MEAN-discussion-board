@@ -1,0 +1,14 @@
+<header>
+	<a href="#/dashboard"><button>Dashboard</button></a>
+	<button ng-click="logout()">Logout</button>
+</header>
+<article>
+	<h2>Username: {{ uC.user.name }}</h2>
+	<p>Posted...
+		<ul>
+			<li>{{ uC.user.counts.topics }} Topic(s)</li>
+			<li>{{ uC.user.counts.posts }} Post(s)</li>
+			<li>{{ uC.user.counts.comments }} Comment(s)</li>
+		</ul>
+	</p>
+</article>

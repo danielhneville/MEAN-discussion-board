@@ -1,0 +1,25 @@
+<a href="#/dashboard"><button>Dashboard</button></a>
+<button ng-click="logout()">Logout</button>
+<h2><a href="#/user/{{ tC.topic._creator._id }}">{{ tC.topic._creator.name }}</a> posted a topic:</h2>
+<h4>{{ tC.topic.topic }}</h4>
+<p>Description: {{ tC.topic.description }}</p>
+<form ng-submit="tC.createPost()">
+	<legend>Post your answer here</legend>
+	<textarea ng-model="tC.post" cols="50" rows="4"></textarea>
+	<input type="submit" value="Post">
+</form>
+<div ng-repeat="post in tC.topic.posts | orderBy:'createdAt':true">
+	<p><a href="#/user/{{ post._poster._id }}">{{ post._poster.name }}:</a> {{ post.post }}</p>
+	<button ng-click="tC.vote(post._id, 'upvotes')">{{ post.upvotes }} upvotes</button>
+	<button ng-click="tC.vote(post._id, 'downvotes')">{{ post.downvotes }} downvotes</button>
+	<ul>
+		<li ng-repeat="comment in post.comments | orderBy:'createdAt'">
+			<a href="#/user/{{ comment._commenter._id }}">{{ comment._commenter.name }}:</a>
+			{{ comment.comment }}
+		</li>
+	</ul>	
+	<form ng-submit="tC.createComment(post._id)">
+		<textarea cols="50" rows="4" ng-model="tC.newComment[post._id]"></textarea>
+		<input type="submit" value="Comment">
+	</form>
+</div>

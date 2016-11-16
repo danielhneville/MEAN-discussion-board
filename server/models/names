@@ -1,0 +1,21 @@
+User:
+- _id
+- name
+- createdAt
+
+Topic:
+- _id
+- _creator
+- topic
+- description
+- category
+- posts:
+	- _id
+	- _poster
+	- post
+	- upvotes
+	- downvotes
+	- comments: 
+		- _id
+		- _commenter
+		- comment

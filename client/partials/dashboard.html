@@ -1,0 +1,29 @@
+<h1>Welcome, {{ dC.user.name }}!</h1>
+<label>Search: <input type="text" ng-model="dC.search"></label>
+<table>
+	<thead>
+		<tr>
+			<th>Category</th>
+			<th>Topic</th>
+			<th>User Name</th>
+			<th>Posts</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="topic in dC.topics | filter:{topic: dC.search}">
+			<td>{{ topic.category }}</td>
+			<td><a href="#/topic/{{ topic._id }}">{{ topic.topic }}</a></td>
+			<td><a href="#/user/{{ topic._creator._id }}">{{ topic._creator.name }}</a></td>
+			<td>{{ topic.posts.length }}</td>
+		</tr>
+	</tbody>
+</table>
+<form ng-submit="dC.create()">
+	<fieldset>
+		<legend>Add a new Topic</legend>
+		<label>Topic: <input type="text" ng-model="dC.form.topic"></label>
+		<label>Description: <textarea ng-model="dC.form.description"></textarea></label>
+		<label>Category: <select ng-model="dC.form.category" ng-options="category for category in dC.categories"></select></label>
+		<input type="submit" value="Submit">
+	</fieldset>
+</form>
